@@ -1,0 +1,160 @@
+{%- liquid
+  assign header_bg_color = settings.backgroundColor
+  if settings.showHeaderBackground
+    assign header_bg_color = settings.headerBackgroundColor
+  endif
+-%}
+
+<style>
+  :root {
+    --logo-width-desktop: {{ settings.logoWidthDesktop }}px;
+    --logo-width-mobile: {{ settings.logoWidthMobile }}px;
+    --header-text-color: {{ settings.headerTextColor }};
+    --header-background-color: {{ header_bg_color }};
+  }
+</style>
+
+{% assign has_navbar = false %}
+{% capture navbar %}
+  <!-- Navigation links -->
+  {% for i in (1..3) %}
+    {% assign nav_text_id = 'navText_' | append: i %}
+    {% assign nav_url_id = 'navUrl_' | append: i %}
+    {% assign nav_new_tab_id = 'navNewTab_' | append: i %}
+    {% if settings[nav_text_id] != blank %}
+      {% assign has_navbar = true %}
+      <a href="{{ settings[nav_url_id] }}"{% if settings[nav_new_tab_id] %} target="_blank"{% endif %} class="self-start md:self-center transition-opacity hover:opacity-80">{{ settings[nav_text_id] }}</a>
+    {% endif %}
+  {% endfor %}
+
+  <!-- Button link -->
+  {% if settings.headerLinkText != blank %}
+    {% assign has_navbar = true %}
+    <a href="{{ settings.headerLinkUrl }}" class="self-start md:self-center w-full md:w-auto text-center md:text-left text-[1.5rem] leading-[2rem] md:text-[length:var(--body-font-size)] md:leading-normal rounded-[var(--border-radius)] bg-[var(--accent-color)] px-4 py-2 md:px-2.5 md:py-1.5 text-[color:var(--background-color)] shadow-sm transition-opacity hover:opacity-80">{{ settings.headerLinkText }}</a>
+  {% endif %}
+{% endcapture %}
+
+<header id="Header" class="relative z-20 bg-[var(--header-background-color)] text-[color:var(--header-text-color)] text-[length:var(--body-font-size)] leading-normal font-[family-name:var(--font-family)]">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 md:px-8" aria-label="Global">
+    <a href="/" class="-m-1.5 p-1.5">
+      {% if settings.logo != blank %}
+        <span class="sr-only">{{ site.name | default: '' }}</span>
+        <img class="w-[var(--logo-width-mobile)] md:w-[var(--logo-width-desktop)]" src="{{ settings.logo.src }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}" alt="{{ settings.logo.alt }}" loading="eager">
+      {% elsif site.name != blank %}
+        <span class="transition-opacity hover:opacity-80">{{ site.name }}</span>
+      {% endif %}
+    </a>
+    {% if has_navbar %}
+      <div class="flex md:hidden">
+        <!-- Open Menu Button -->
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[var(--header-text-color)]"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="sr-only">{{ locales.header.openMenu }}</span>
+          <!-- Open menu icon -->
+          <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="pointer-events-none"><path d="M3 5H21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </div>
+      <div class="hidden md:flex md:gap-x-6 md:items-center">
+        {{ navbar }}
+      </div>
+    {% endif %}
+  </nav>
+  {% if has_navbar %}
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden transition-all duration-300 opacity-0 invisible" role="dialog" aria-modal="true">
+      <!-- Background backdrop -->
+      <div id="mobile-menu-backdrop" class="fixed inset-0 z-20 bg-black bg-opacity-30"></div>
+      <div class="fixed inset-y-0 top-0 right-0 h-fit w-full overflow-y-auto bg-[var(--header-background-color)] px-6 py-6 sm:h-full sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 z-30">
+        <div class="flex items-center justify-between">
+          <a href="/" class="-m-1.5 p-1.5">
+            {% if settings.logo != blank %}
+              <span class="sr-only">{{ site.name | default: '' }}</span>
+              <img class="w-[var(--logo-width-mobile)] md:w-[var(--logo-width-desktop)]" src="{{ settings.logo.src }}" width="{{ settings.logo.width }}" height="{{ settings.logo.height }}" alt="{{ settings.logo.alt }}">
+            {% elsif site.name != blank %}
+              <span class="transition-opacity hover:opacity-80">{{ site.name }}</span>
+            {% endif %}
+          </a>
+          <!-- Close Menu Button -->
+          <button
+            id="mobile-menu-close-button"
+            type="button"
+            class="-m-2.5 rounded-md p-2.5 text-[var(--header-text-color)]"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span class="sr-only">{{ locales.header.closeMenu }}</span>
+            <!-- Close menu icon -->
+            <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="pointer-events-none"><path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 overflow-hidden">
+            <div id="mobile-menu-navbar" class="py-6 flex flex-col gap-6 text-[1.875rem] leading-[2.25rem] translate-y-[10px] transition-transform duration-300">
+              {{ navbar }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</header>
+
+{% if has_navbar %}
+  <!-- Mobile Menu JS -->
+  <script>
+    const mobileMenuOpenButton = document.getElementById('mobile-menu-button');
+    const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+    const mobileMenubackdrop = document.getElementById('mobile-menu-backdrop');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuNavbar = document.getElementById('mobile-menu-navbar');
+    const mobileMenuCloseElements = [mobileMenuCloseButton, mobileMenubackdrop];
+    const mobileMenuButtons = [mobileMenuOpenButton, mobileMenuCloseButton];
+    const mobileMenuToggleClasses = ['opacity-0', 'invisible'];
+    const navbarToggleClass = 'translate-y-[10px]';
+    const transitionDuration = parseFloat(getComputedStyle(mobileMenuNavbar).transitionDuration) * 1000;
+
+    // Event listeners
+    mobileMenuOpenButton.addEventListener('click', () => toggleMobileMenu(true));
+    mobileMenuCloseElements.forEach((element) => element.addEventListener('click', () => toggleMobileMenu(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !mobileMenu.classList.contains('invisible')) {
+        toggleMobileMenu(false);
+      }
+    });
+
+    function toggleMobileMenu(isOpen) {
+      // Toggle classes based on isOpen
+      mobileMenuToggleClasses.forEach((className) => {
+        mobileMenu.classList.toggle(className, !isOpen);
+      });
+      handleNavbarTransition(isOpen);
+
+      // Update 'aria-expanded' on the toggle buttons
+      mobileMenuButtons.forEach((element) => {
+        element.setAttribute('aria-expanded', isOpen.toString());
+      });
+
+      // Manage focus and tabindex
+      if (isOpen) {
+        mobileMenuOpenButton.setAttribute('tabindex', '-1'); // Prevent focus
+        mobileMenuCloseButton.focus(); // Move focus to the close button
+      } else {
+        mobileMenuOpenButton.removeAttribute('tabindex'); // Restore focusability
+        mobileMenuOpenButton.focus(); // Return focus to the open button
+      }
+    }
+
+    function handleNavbarTransition(isOpen) {
+      if (isOpen) {
+        mobileMenuNavbar.classList.remove(navbarToggleClass);
+      } else {
+        setTimeout(() => mobileMenuNavbar.classList.add(navbarToggleClass), transitionDuration);
+      }
+    }
+  </script>
+{% endif %}

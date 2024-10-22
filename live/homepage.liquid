@@ -1,0 +1,438 @@
+{%- liquid
+  assign border_radius = 0
+  assign border_radius_icon = 0
+  if settings.borders == "curved"
+    assign border_radius = 8
+    assign border_radius_icon = 9999
+  endif
+-%}
+
+<style>
+  :root {
+    /* Global */
+    --text-color: {{ settings.textColor }};
+    --background-color: {{ settings.backgroundColor }};
+    --accent-color: {{ settings.accentColor }};
+    --font-family: {{ settings.fontFamily }};
+    --body-font-size: {{ settings.bodyFontSize }}px;
+    --border-radius: {{ border_radius }}px;
+    --border-radius-icon: {{ border_radius_icon }}px;
+
+    /* Headings typography */
+    {% assign min_heading_size = 16 %}
+    --h1-size: {{ settings.headingFontSize | times: 1.8 | round | at_least: min_heading_size }}px;
+    --h1-size-mobile: {{ settings.headingFontSize | times: 1.3 | round | at_least: min_heading_size }}px;
+    --h2-size: {{ settings.headingFontSize |  at_least: min_heading_size  }}px;
+    --h3-size: {{ settings.headingFontSize | times: 0.75 | round | at_least: min_heading_size }}px;
+    --h4-size: {{ settings.headingFontSize | times: 0.6 | round | at_least: min_heading_size }}px;
+    --heading-line-height: 1.2;
+
+    /* Hero */
+    --hero-text-color: {{ settings.heroTextColor }};
+
+    {% if settings.heroBackground | is_hex %}
+      --hero-background-color: {{ settings.heroBackground }};
+    {% else %}
+      --hero-background-color: transparent;
+    {% endif %};
+
+    {% if settings.heroBackground.src != blank %}
+      --hero-background-image: url('{{ settings.heroBackground.src }}');
+    {% elsif settings.heroBackground == null %}
+      --hero-background-image: url('/placeholder.png');
+    {% endif %}
+
+    --hero-height: {{ settings.heroHeight }}px;
+    --search-width: {{ settings.searchWidth }};
+
+    /* Callout */
+    --callout-text-color: {{ settings.calloutTextColor }};
+    --callout-background-color: {{ settings.calloutBackgroundColor }};
+    --callout-width: {{ settings.calloutWidth }};
+
+    /* Key links */
+    --keylinks-image-width: {{ settings.keyLinksImageWidth }}px;
+    --keylinks-text-color: {{ settings.keyLinksTextColor }};
+    --keylinks-background-color: {{ settings.keyLinksBackgroundColor }};
+    --keylinks-link-color: {{ settings.keyLinksLinkColor }};
+
+    /* Categories */
+    --categories-text-color: {{ settings.categoriesTextColor }};
+    --categories-background-color: {{ settings.categoriesBackgroundColor }};
+    --categories-link-color: {{ settings.categoriesLinkColor }};
+  }
+
+  .collapse-next-padding + div {
+    padding-top: 0 !important;
+  }
+</style>
+
+<!-- Icons -->
+{% capture 'icon_help' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 9C9 5.49997 14.5 5.5 14.5 9C14.5 11.5 12 10.9999 12 13.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 18.01L12.01 17.9989" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_search' %}<svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M17 17L21 21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_chat' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.8214 2.48697 15.5291 3.33782 17L2.5 21.5L7 20.6622C8.47087 21.513 10.1786 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_book' %}<svg width="24px" stroke-width="1" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M5 19.5V5C5 3.89543 5.89543 3 7 3H18.4C18.7314 3 19 3.26863 19 3.6V21" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M9 7L15 7" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M6.5 15L19 15" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M6.5 18L19 18" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M6.5 21L19 21" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M6.5 18C5.5 18 5 17.3284 5 16.5C5 15.6716 5.5 15 6.5 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.5 21C5.5 21 5 20.3284 5 19.5C5 18.6716 5.5 18 6.5 18" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_info' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 11.5V16.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 7.51L12.01 7.49889" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_settings' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.6224 10.3954L18.5247 7.7448L20 6L18 4L16.2647 5.48295L13.5578 4.36974L12.9353 2H10.981L10.3491 4.40113L7.70441 5.51596L6 4L4 6L5.45337 7.78885L4.3725 10.4463L2 11V13L4.40111 13.6555L5.51575 16.2997L4 18L6 20L7.79116 18.5403L10.397 19.6123L11 22H13L13.6045 19.6132L16.2551 18.5155C16.6969 18.8313 18 20 18 20L20 18L18.5159 16.2494L19.6139 13.598L21.9999 12.9772L22 11L19.6224 10.3954Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_tools' %}<svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M10.0503 10.6066L2.97923 17.6777C2.19818 18.4587 2.19818 19.7251 2.97923 20.5061V20.5061C3.76027 21.2872 5.0266 21.2872 5.80765 20.5061L12.8787 13.4351" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.1927 13.7994L21.071 17.6777C21.8521 18.4587 21.8521 19.7251 21.071 20.5061V20.5061C20.29 21.2872 19.0236 21.2872 18.2426 20.5061L12.0341 14.2977" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.73267 5.90381L4.61135 6.61092L2.49003 3.07539L3.90424 1.66117L7.43978 3.78249L6.73267 5.90381ZM6.73267 5.90381L9.5629 8.73404" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.0503 10.6066C9.2065 8.45359 9.37147 5.62861 11.111 3.8891C12.8505 2.14958 16.0607 1.76778 17.8285 2.82844L14.7878 5.86911L14.5052 8.98015L17.6162 8.69754L20.6569 5.65686C21.7176 7.42463 21.3358 10.6349 19.5963 12.3744C17.8567 14.1139 15.0318 14.2789 12.8788 13.435" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_warning' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 7L12 13" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 17.01L12.01 16.9989" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_check' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+{% capture 'icon_globe' %}<svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 12.5L8 14.5L7 18L8 21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17 20.5L16.5 18L14 17V13.5L17 12.5L21.5 13" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 5.5L18.5 7L15 7.5V10.5L17.5 9.5H19.5L21.5 10.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.5 10.5L5 8.5L7.5 8L9.5 5L8.5 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>{% endcapture %}
+
+ <header />
+
+<main class="w-full bg-[var(--background-color)] text-[color:var(--text-color)] text-[length:var(--body-font-size)] leading-normal font-[family-name:var(--font-family)]">
+  <!-- Hero/Search -->
+  {% if settings.showHero %}
+    {%- liquid
+      assign has_hero_fade = false
+
+      if settings.heroDivider == 'fade' and settings.heroBackground != settings.backgroundColor
+        assign has_hero_fade = true
+      endif
+
+      assign hero_bg_class = ""
+      
+      if settings.heroBackground | is_hex
+        assign hero_bg_class = "bg-[var(--hero-background-color)]"
+        if has_hero_fade
+          assign hero_bg_class = "bg-[linear-gradient(to_bottom,_var(--hero-background-color)_0%,_var(--hero-background-color)_40%,_transparent_100%)]"
+        endif
+      elsif settings.heroBackground.src != blank or settings.heroBackground == null
+        assign hero_bg_class = "bg-[image:var(--hero-background-image)]"
+        if has_hero_fade
+          assign hero_bg_class = "bg-[linear-gradient(to_bottom,_transparent_0%,_transparent_40%,_var(--background-color)_100%),var(--hero-background-image)]"
+        endif
+      endif
+    -%}
+    <div id="Hero/Search" class="text-[color:var(--hero-text-color)] bg-cover bg-center bg-no-repeat {{ hero_bg_class }}{% if has_hero_fade %} -mb-[20%] pb-[calc(20%-1.5rem)] md:pb-[calc(20%-3rem)]{% elsif settings.heroBackground == settings.backgroundColor %} collapse-next-padding{% endif %}">
+      <div class="mx-auto max-w-7xl min-h-[var(--hero-height)] flex flex-col {{ settings.heroAlignment }} px-6 pt-4 pb-6 md:px-8 md:py-12">
+        {% if settings.heroHeading != blank %}
+          <h1 class="text-[length:var(--h1-size-mobile)] mb-3 md:text-[length:var(--h1-size)] leading-[var(--heading-line-height)]">{{ settings.heroHeading }}</h1>
+        {% endif %}
+        {% if settings.heroText != blank %}
+          <p class="text-[length:var(--h3-size)] leading-[var(--heading-line-height)] mb-8 max-w-xl opacity-70">{{ settings.heroText }}</p>
+        {% endif %}
+        <form role="search" class="w-full max-w-[var(--search-width)] mb-5">
+          <div class="relative after:absolute after:inset-x-0 after:inset-y-0 after:border after:border-[var(--hero-text-color)] after:rounded-[var(--border-radius-icon)] after:opacity-20 after:pointer-events-none focus-within:after:border-transparent">
+            <label for="search" class="sr-only block">{{ locales.homepage.search }}</label>
+            <input type="search" name="search" id="search" class="block w-full text-ellipsis bg-transparent placeholder-[var(--hero-text-color)] text-[length:var(--body-font-size)] rounded-[var(--border-radius-icon)] py-5 pl-8 pr-16 border-0 focus:z-10 focus:ring-0 focus:shadow-[0_8px_28px_rgba(0,0,0,0.28)] transition-[box-shadow] duration-200 [&::-webkit-search-cancel-button]:hidden" placeholder="{{ settings.searchPlaceholder }}">
+            <button type="submit" class="flex justify-center items-center absolute right-2.5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-[var(--border-radius-icon)] text-[color:var(--background-color)] bg-[var(--accent-color)] transition-opacity hover:opacity-80">
+              <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M17 17L21 21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </div>
+        </form>
+        {% if settings.popularSearches != blank %}
+          {% assign justify_class = '' %}
+          {% if settings.heroAlignment contains 'items-center' %}
+            {% assign justify_class = 'justify-center' %}
+          {% elsif settings.heroAlignment contains 'items-end' %}
+            {% assign justify_class = 'justify-end' %}
+          {% endif %}
+          <div class="flex {{ justify_class }} items-center flex-wrap gap-2">
+            <span class="font-semibold">{{ locales.homepage.popular }}:</span>
+            {% assign search_terms = settings.popularSearches | split: ',' %}
+            {% for term in search_terms %}
+              <a href="#" class="{% if settings.popularSearchesStyle == 'badges' %} px-2.5 py-1.5 relative z-[1] transition-color duration-200 after:absolute after:inset-x-0 after:inset-y-0 after:-z-[1] after:rounded-[var(--border-radius)] after:bg-[var(--hero-text-color)] after:opacity-10 after:transition-opacity after:duration-200 hover:text-[color:var(--hero-background-color)] hover:after:opacity-40{% else %} hover:underline{% endif %}">{{ term }}{% unless forloop.last or settings.popularSearchesStyle == 'badges' %},{% endunless %}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% case settings.heroDivider %}
+        {% when 'curve' %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="64" viewBox="0 0 100 100" fill="{{ settings.backgroundColor }}" preserveAspectRatio="none">
+            <path d="M0,0 C16.6666667,66 33.3333333,98 50,98 C66.6666667,98 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z"></path>
+          </svg>
+        {% when 'diagonal' %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="64" viewBox="0 0 100 64" preserveAspectRatio="none">
+            <polygon points="0,0 100,0 100,64" fill="transparent" />
+            <polygon points="0,0 100,64 0,64" fill="{{ settings.backgroundColor }}" />
+          </svg>
+        {% when 'triangle' %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="64" viewBox="0 0 100 64" preserveAspectRatio="none">
+            <polygon points="0,64 50,0 100,64" fill="{{ settings.backgroundColor }}" />
+          </svg>
+        {% when 'wave' %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="64" class="rotate-180" viewBox="0 0 1000 100" preserveAspectRatio="none">
+            <path d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7  c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4  c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z" fill="{{ settings.backgroundColor }}"></path>
+          </svg>
+      {% endcase %}
+    </div>
+  {% endif %}
+
+  <!-- Callout -->
+  {% if settings.showCallout %}
+    <div id="Callout" class="mx-auto max-w-7xl px-6 md:px-8 flex {{ settings.calloutAlignment }} pt-6 md:pt-12">
+      <div class="grow max-w-[var(--callout-width)] flex py-4 pl-4 pr-8 md:py-6 md:pl-6 md:pr-12 gap-4 bg-[var(--callout-background-color)] text-[color:var(--callout-text-color)] rounded-[var(--border-radius)]">
+        <div>
+          {% if settings.calloutImage != blank %}
+            <img class="w-6" src="{{ settings.calloutImage.src }}" width="{{ settings.calloutImage.width }}" height="{{ settings.calloutImage.height }}" alt="{{ settings.calloutImage.alt }}" loading="lazy">
+          {% else %}
+            {% case settings.calloutIcon %}
+              {% when 'help' %}
+                {{ icon_help }}
+              {% when 'search' %}
+                {{ icon_search }}
+              {% when 'chat' %}
+                {{ icon_chat }}
+              {% when 'book' %}
+                {{ icon_book }}
+              {% when 'info' %}
+                {{ icon_info }}
+              {% when 'settings' %}
+                {{ icon_settings }}
+              {% when 'tools' %}
+                {{ icon_tools }}
+              {% when 'warning' %}
+                {{ icon_warning }}
+              {% when 'check' %}
+                {{ icon_check }}
+              {% when 'globe' %}
+                {{ icon_globe }}
+            {% endcase %}
+          {% endif %}
+        </div>
+        <div>
+          <h2 class="text-[length:var(--h4-size)] leading-[var(--heading-line-height)] font-semibold mb-1">{{ settings.calloutHeading }}</h2>
+          <p>{{ settings.calloutText }}</p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Key links -->
+  {% if settings.showKeyLinks %}
+    <div id="Key_links" class="mx-auto max-w-7xl p-6 md:px-8 md:py-12">
+      <ul class="flex flex-col md:flex-row md:justify-center flex-wrap gap-6 md:gap-8">
+        {% for i in (1..3) %}
+          {% assign keylink_image_id = 'keyLinksImage_' | append: i %}
+          {% assign keylink_heading_id = 'keyLinksHeading_' | append: i %}
+          {% assign keylink_description_id = 'keyLinksDescription_' | append: i %}
+          {% assign keylink_url_id = 'keyLinksUrl_' | append: i %}
+          {% assign keylink_url_text_id = 'keyLinksUrlText_' | append: i %}
+          {% if settings[keylink_heading_id] != blank or settings[keylink_description_id] != blank %}
+            <li class="flex md:w-[calc((100%-2rem*2)/3)] break-words">
+              {% if settings[keylink_url_id] == blank %}
+                <div class="flex relative grow rounded-[var(--border-radius)] text-[color:var(--keylinks-text-color)] bg-[var(--keylinks-background-color)] {{ settings.keyLinksAlignment }} after:absolute after:-inset-x-0 after:-inset-y-0 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:border-[var(--keylinks-text-color)] after:opacity-20{% if settings.keyLinksBorders %} after:border{% endif %}">
+              {% else %}
+                <a
+                  href="{{ settings[keylink_url_id] }}"
+                  aria-label="{{ settings[keylink_heading_id] }}"
+                  class="group flex relative grow rounded-[var(--border-radius)] text-[color:var(--keylinks-text-color)] bg-[var(--keylinks-background-color)] {{ settings.keyLinksAlignment }} hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] transition-[box-shadow] duration-300 after:absolute after:-inset-x-0 after:-inset-y-0 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:border-[var(--keylinks-text-color)] after:opacity-20{% if settings.keyLinksBorders %} after:border{% endif %}"
+                >
+              {% endif %}
+                <div class="flex flex-col justify-between overflow-hidden p-8">
+                  <div class="mb-4">
+                    {% if settings[keylink_image_id] != blank %}
+                      <img class="inline-block w-full object-cover mb-6 max-w-[var(--keylinks-image-width)] {{ settings.keyLinksImageAspect }}" src="{{ settings[keylink_image_id].src }}" width="{{ settings[keylink_image_id].width }}" height="{{ settings[keylink_image_id].height }}" alt="{{ settings[keylink_image_id].alt }}" loading="lazy">
+                    {% endif %}
+                    <h2 class="text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">{{ settings[keylink_heading_id] }}</h2>
+                    <p class="opacity-70">{{ settings[keylink_description_id] }}</p>
+                  </div>
+                  {% if settings[keylink_url_text_id] != blank %}
+                    <span class="text-[color:var(--keylinks-link-color)] font-semibold md:translate-y-[calc(100%+2rem)] md:opacity-0 transition-all duration-300 ease-[cubic-bezier(0.19, 1, 0.22, 1)] group-hover:translate-y-0 group-hover:opacity-100">
+                      {{ settings[keylink_url_text_id] }}
+                      <svg class="inline-block mb-[2px]" width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </span>
+                  {% endif %}
+                </div>
+              {% if settings[keylink_url_id] == blank %}
+                </div>
+              {% else %}
+                </a>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- Promoted articles -->
+  {% if settings.showPromotedArticles %}
+    <div id="Promoted_articles" class="mx-auto max-w-7xl p-6 md:px-8 md:py-12">
+      {% if settings.promotedArticlesHeading != blank %}
+        <h2 class="text-[length:var(--h2-size)] leading-[var(--heading-line-height)] mb-8">{{ settings.promotedArticlesHeading }}</h2>
+      {% endif %}
+      <ul class="flex flex-col md:flex-row flex-wrap gap-6 md:gap-8">
+        {% if promotedPosts.size > 0 %}
+          {% for post in promotedPosts %}
+            {%- liquid
+              assign first_heading = post.jsonContent | where: "type", "heading" | first
+              assign first_heading_text = first_heading.content[0].text
+              assign post_heading = post.title | default: first_heading_text
+
+              assign first_paragraph = post.jsonContent | where: "type", "paragraph" | first
+              assign first_paragraph_text = first_paragraph.content[0].text
+              assign post_description = post.description | default: first_paragraph_text
+            -%}
+            <li class="md:w-[calc((100%-2rem*3)/4)] break-words">
+              <a
+                href="/{{ post.slug }}"
+                aria-label="{{ post_heading }}"
+                class="group block relative after:absolute after:-inset-x-4 after:-inset-y-4 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:bg-[var(--text-color)] after:opacity-0 hover:after:opacity-[0.03] after:transition-opacity after:duration-200"
+              >
+                <h2 class="relative text-[color:var(--accent-color)] text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">
+                  {{ post_heading }}
+                  <svg class="inline-block absolute bottom-0 ml-[0.3em] mb-[0.5px] opacity-0 -translate-x-[10px] transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </h2>
+                <p class="opacity-70">{{ post_description | truncate: 100 }}</p>
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <!-- Onboarding content -->
+          {% for i in (1..4) %}
+            {% assign heading_locale = 'heading_' | append: i %}
+            {% assign description_locale = 'description_' | append: i %}
+            <li class="md:w-[calc((100%-2rem*3)/4)] break-words">
+              <a
+                href="#"
+                aria-label="{{ locales.onboarding.promotedArticles[heading_locale] }}"
+                class="group block relative after:absolute after:-inset-x-4 after:-inset-y-4 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:bg-[var(--text-color)] after:opacity-0 hover:after:opacity-[0.03] after:transition-opacity after:duration-200"
+              >
+                <h2 class="relative text-[color:var(--accent-color)] text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">
+                  {{ locales.onboarding.promotedArticles[heading_locale] }}
+                  <svg class="inline-block absolute bottom-0 ml-[0.3em] mb-[0.5px] opacity-0 -translate-x-[10px] transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0" width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </h2>
+                <p class="opacity-70">{{ locales.onboarding.promotedArticles[description_locale] }}</p>
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- Categories -->
+  {% if settings.showCategories %}
+    <div id="Categories" class="mx-auto max-w-7xl p-6 md:px-8 md:py-12">
+      {% if settings.categoriesHeading != blank %}
+        <h2 class="text-[length:var(--h2-size)] mb-8">{{ settings.categoriesHeading }}</h2>
+      {% endif %}
+      <ul class="flex flex-col md:flex-row md:justify-center flex-wrap gap-6 md:gap-8">
+        {% if settings.categories.size > 0 %}
+          {% for category_id in settings.categories %}
+            {% assign category = categories | where: "id", category_id | first %}
+            <li class="flex md:w-[calc((100%-2rem)/2)] break-words">
+              <a
+                href="#"
+                aria-label="{{ category.name }}"
+                class="group flex gap-6 relative grow p-8 rounded-[var(--border-radius)] text-[color:var(--categories-text-color)] bg-[var(--categories-background-color)] after:absolute after:-inset-x-0 after:-inset-y-0 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:border-[var(--categories-text-color)] after:opacity-20{% if settings.categoriesBorders %} after:border{% endif %}"
+              >
+                {% if category.image %}
+                  <div class="shrink-0">
+                    <img class="w-[50px] {{ settings.categoriesImageAspect }}" src="{{ category.image }}" alt="{{ category.name }}">
+                  </div>
+                {% endif %}
+                <div class="flex flex-col justify-between">
+                  <div class="mb-4">
+                    <h2 class="text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">{{ category.name }}</h2>
+                    {% if category.description != blank %}
+                      <p class="opacity-70">{{ category.description }}</p>
+                    {% endif %}
+                  </div>
+                  {% if settings.showCategoriesButton %}
+                    <span class="text-[color:var(--categories-link-color)] font-semibold">
+                      {{ locales.homepage.seeAllArticles }}
+                      <svg class="inline-block mb-[2px] group-hover:translate-x-[0.4em] transition-transform duration-200" width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..4) %}
+            {% assign heading_locale = 'heading_' | append: i %}
+            {% assign description_locale = 'description_' | append: i %}
+            <li class="flex md:w-[calc((100%-2rem)/2)] break-words">
+              <a
+                href="#"
+                aria-label="{{ locales.onboarding.categories[heading_locale] }}"
+                class="group flex gap-6 relative grow p-8 rounded-[var(--border-radius)] text-[color:var(--categories-text-color)] bg-[var(--categories-background-color)] after:absolute after:-inset-x-0 after:-inset-y-0 after:z-0 after:pointer-events-none after:rounded-[var(--border-radius)] after:border-[var(--categories-text-color)] after:opacity-20{% if settings.categoriesBorders %} after:border{% endif %}"
+              >
+                <div class="shrink-0">
+                  <div class="w-[50px] {{ settings.categoriesImageAspect }} flex items-center justify-center bg-[var(--text-color)]">
+                    <span class="text-[color:var(--background-color)]">
+                      <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M10.0503 10.6066L2.97923 17.6777C2.19818 18.4587 2.19818 19.7251 2.97923 20.5061V20.5061C3.76027 21.2872 5.0266 21.2872 5.80765 20.5061L12.8787 13.4351" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.1927 13.7994L21.071 17.6777C21.8521 18.4587 21.8521 19.7251 21.071 20.5061V20.5061C20.29 21.2872 19.0236 21.2872 18.2426 20.5061L12.0341 14.2977" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.73267 5.90381L4.61135 6.61092L2.49003 3.07539L3.90424 1.66117L7.43978 3.78249L6.73267 5.90381ZM6.73267 5.90381L9.5629 8.73404" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.0503 10.6066C9.2065 8.45359 9.37147 5.62861 11.111 3.8891C12.8505 2.14958 16.0607 1.76778 17.8285 2.82844L14.7878 5.86911L14.5052 8.98015L17.6162 8.69754L20.6569 5.65686C21.7176 7.42463 21.3358 10.6349 19.5963 12.3744C17.8567 14.1139 15.0318 14.2789 12.8788 13.435" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </span> 
+                  </div>
+                </div>
+                <div class="flex flex-col justify-between">
+                  <div class="mb-4">
+                    <h2 class="text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">{{ locales.onboarding.categories[heading_locale] }}</h2>
+                    <p class="opacity-70">{{ locales.onboarding.categories[description_locale] }}</p>
+                  </div>
+                  {% if settings.showCategoriesButton %}
+                    <span class="text-[color:var(--categories-link-color)] font-semibold">
+                      {{ locales.homepage.seeAllArticles }}
+                      <svg class="inline-block mb-[2px] group-hover:translate-x-[0.4em] transition-transform duration-200" width="1em" height="1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- External links -->
+  {% if settings.showExternalLinks %}
+    <div id="External_links" class="mx-auto max-w-7xl p-6 md:px-8 md:py-12">
+      <ul class="flex justify-center flex-wrap gap-6 md:gap-8">
+        {% for i in (1..4) %}
+          {% assign externallink_icon_id = 'externalLinksIcon_' | append: i %}
+          {% assign externallink_image_id = 'externalLinksImage_' | append: i %}
+          {% assign externallink_heading_id = 'externalLinksHeading_' | append: i %}
+          {% assign externallink_description_id = 'externalLinksDescription_' | append: i %}
+          {% assign externallink_url_id = 'externalLinksUrl_' | append: i %}
+          {% if settings[externallink_heading_id] != blank or settings[externallink_description_id] != blank %}
+            <li class="flex w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-2rem*3)/4)] break-words">
+              <a
+                href="{{ settings[externallink_url_id] }}"
+                aria-label="{{ settings[externallink_heading_id] }}"
+                class="w-full {{ settings.externalLinksAlignment }}"
+              >
+                {% if settings[externallink_image_id] != blank %}
+                  <img class="w-6 inline-block mb-4" src="{{ settings[externallink_image_id].src }}" width="{{ settings[externallink_image_id].width }}" height="{{ settings[externallink_image_id].height }}" alt="{{ settings[externallink_image_id].alt }}" loading="lazy">
+                {% else %}
+                  <div class="[&>svg]:inline-block mb-4">
+                    {% case settings[externallink_icon_id] %}
+                      {% when 'help' %}
+                        {{ icon_help }}
+                      {% when 'search' %}
+                        {{ icon_search }}
+                      {% when 'chat' %}
+                        {{ icon_chat }}
+                      {% when 'book' %}
+                        {{ icon_book }}
+                      {% when 'info' %}
+                        {{ icon_info }}
+                      {% when 'settings' %}
+                        {{ icon_settings }}
+                      {% when 'tools' %}
+                        {{ icon_tools }}
+                      {% when 'warning' %}
+                        {{ icon_warning }}
+                      {% when 'check' %}
+                        {{ icon_check }}
+                      {% when 'globe' %}
+                        {{ icon_globe }}
+                    {% endcase %}
+                  </div>
+                {% endif %}
+                <h2 class="text-[length:var(--h3-size)] leading-[var(--heading-line-height)] font-semibold mb-2">{{ settings[externallink_heading_id] }}</h2>
+                <p class="opacity-70">{{ settings[externallink_description_id] }}</p>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</main>
+
+<footer />

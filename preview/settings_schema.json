@@ -1,0 +1,1272 @@
+[
+  {
+    "name": "Colors",
+    "section": false,
+    "settings": [
+      {
+        "id": "textColor",
+        "label": "Text",
+        "type": "color",
+        "default": "#222222"
+      },
+      {
+        "id": "backgroundColor",
+        "label": "Background",
+        "type": "color",
+        "default": "#ffffff"
+      },
+      {
+        "id": "accentColor",
+        "label": "Accent",
+        "type": "color",
+        "default": "#FF385C"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "section": false,
+    "settings": [
+      {
+        "id": "fontFamily",
+        "label": "Font",
+        "type": "text",
+        "default": "Helvetica Neue"
+      },
+      {
+        "label": "Heading size",
+        "type": "range",
+        "id": "headingFontSize",
+        "min": 24,
+        "max": 38,
+        "step": 1,
+        "unit": "px",
+        "default": 26
+      },
+      {
+        "label": "Body text size",
+        "type": "range",
+        "id": "bodyFontSize",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Styles",
+    "section": false,
+    "settings": [
+      {
+        "type": "select",
+        "id": "borders",
+        "label": "Borders",
+        "options": [
+          {
+            "value": "curved",
+            "label": "Curved"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          }
+        ],
+        "default": "curved"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "section": true,
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logoWidthDesktop",
+        "label": "Logo width on desktop",
+        "min": 30,
+        "max": 200,
+        "step": 1,
+        "unit": "px",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "logoWidthMobile",
+        "label": "Logo width on mobile",
+        "min": 20,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "id": "headerTextColor",
+        "label": "Text color",
+        "type": "color",
+        "default": "#222222"
+      },
+      {
+        "type": "checkbox",
+        "id": "showHeaderBackground",
+        "label": "Show background",
+        "default": true
+      },
+      {
+        "id": "headerBackgroundColor",
+        "label": "Background color",
+        "type": "color",
+        "default": "#f2f2f2"
+      },
+      {
+        "type": "header",
+        "content": "First navigation link"
+      },
+      {
+        "type": "text",
+        "id": "navText_1",
+        "label": "Text",
+        "default": "Get started"
+      },
+      {
+        "type": "text",
+        "id": "navUrl_1",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "checkbox",
+        "id": "navNewTab_1",
+        "label": "Open in new tab",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Second navigation link"
+      },
+      {
+        "type": "text",
+        "id": "navText_2",
+        "label": "Text",
+        "default": "Guides"
+      },
+      {
+        "type": "text",
+        "id": "navUrl_2",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "checkbox",
+        "id": "navNewTab_2",
+        "label": "Open in new tab",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Third navigation link"
+      },
+      {
+        "type": "text",
+        "id": "navText_3",
+        "label": "Text",
+        "default": "FAQs"
+      },
+      {
+        "type": "text",
+        "id": "navUrl_3",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "checkbox",
+        "id": "navNewTab_3",
+        "label": "Open in new tab",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Button link"
+      },
+      {
+        "type": "text",
+        "id": "headerLinkText",
+        "label": "Text",
+        "default": "FAQs"
+      },
+      {
+        "type": "text",
+        "id": "headerLinkUrl",
+        "label": "Link",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "Hero/Search",
+    "section": true,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "showHero",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "id": "heroTextColor",
+        "label": "Text",
+        "type": "color",
+        "default": "#222222"
+      },
+      {
+        "type": "background",
+        "id": "heroBackground",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "label": "Height",
+        "type": "range",
+        "id": "heroHeight",
+        "min": 250,
+        "max": 600,
+        "step": 1,
+        "unit": "px",
+        "default": 450
+      },
+      {
+        "type": "select",
+        "id": "heroAlignment",
+        "label": "Alignment",
+        "options": [
+          {
+            "value": "justify-start items-start text-left",
+            "label": "Top left"
+          },
+          {
+            "value": "justify-start items-center text-center",
+            "label": "Top center"
+          },
+          {
+            "value": "justify-start items-end text-right",
+            "label": "Top right"
+          },
+          {
+            "value": "justify-center items-start text-left",
+            "label": "Left"
+          },
+          {
+            "value": "justify-center items-center text-center",
+            "label": "Center"
+          },
+          {
+            "value": "justify-center items-end text-right",
+            "label": "Right"
+          },
+          {
+            "value": "justify-end items-start text-left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "justify-end items-center text-center",
+            "label": "Bottom center"
+          },
+          {
+            "value": "justify-end items-end text-right",
+            "label": "Bottom right"
+          }
+        ],
+        "default": "justify-center items-center"
+      },
+      {
+        "type": "select",
+        "id": "heroDivider",
+        "label": "Divider shape",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "curve",
+            "label": "Curve"
+          },
+          {
+            "value": "diagonal",
+            "label": "Diagonal"
+          },
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "triangle",
+            "label": "Triangle"
+          },
+          {
+            "value": "wave",
+            "label": "Wave"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "text",
+        "id": "heroHeading",
+        "label": "Heading",
+        "default": "How can we help you?"
+      },
+      {
+        "type": "text",
+        "id": "heroText",
+        "label": "Text",
+        "default": "Search for articles, FAQs, guides and more."
+      },
+      {
+        "type": "header",
+        "content": "Search bar"
+      },
+      {
+        "type": "select",
+        "id": "searchWidth",
+        "label": "Width",
+        "options": [
+          {
+            "value": "400px",
+            "label": "Short"
+          },
+          {
+            "value": "650px",
+            "label": "Medium"
+          },
+          {
+            "value": "900px",
+            "label": "Long"
+          }
+        ],
+        "default": "400px"
+      },
+      {
+        "type": "text",
+        "id": "searchPlaceholder",
+        "label": "Search placeholder",
+        "default": "Type your question"
+      },
+      {
+        "type": "text",
+        "id": "popularSearches",
+        "label": "Popular searches",
+        "default": "quick start guide, tutorials, troubleshooting"
+      },
+      {
+        "type": "select",
+        "id": "popularSearchesStyle",
+        "label": "Popular searches style",
+        "options": [
+          {
+            "value": "links",
+            "label": "Links"
+          },
+          {
+            "value": "badges",
+            "label": "Badges"
+          }
+        ],
+        "default": "links"
+      }
+    ]
+  },
+  {
+    "name": "Callout",
+    "section": true,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "showCallout",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "calloutAlignment",
+        "label": "Alignment",
+        "options": [
+          {
+            "value": "justify-start",
+            "label": "Left"
+          },
+          {
+            "value": "justify-center",
+            "label": "Center"
+          },
+          {
+            "value": "justify-end",
+            "label": "Right"
+          }
+        ],
+        "default": "justify-center"
+      },
+      {
+        "type": "select",
+        "id": "calloutWidth",
+        "label": "Width",
+        "options": [
+          {
+            "value": "400px",
+            "label": "Short"
+          },
+          {
+            "value": "650px",
+            "label": "Medium"
+          },
+          {
+            "value": "900px",
+            "label": "Long"
+          }
+        ],
+        "default": "650px"
+      },
+      {
+        "type": "select",
+        "id": "calloutIcon",
+        "label": "Icon",
+        "default": "tools",
+        "options": [
+          {
+            "value": "help",
+            "label": "Help"
+          },
+          {
+            "value": "search",
+            "label": "Search"
+          },
+          {
+            "value": "chat",
+            "label": "Chat"
+          },
+          {
+            "value": "book",
+            "label": "Book"
+          },
+          {
+            "value": "info",
+            "label": "Info"
+          },
+          {
+            "value": "settings",
+            "label": "Settings"
+          },
+          {
+            "value": "tools",
+            "label": "Tools"
+          },
+          {
+            "value": "warning",
+            "label": "Warning"
+          },
+          {
+            "value": "check",
+            "label": "Check"
+          },
+          {
+            "value": "globe",
+            "label": "Globe"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "calloutImage",
+        "label": "Custom icon"
+      },
+      {
+        "type": "text",
+        "id": "calloutHeading",
+        "label": "Heading",
+        "default": "Quick tip"
+      },
+      {
+        "type": "text",
+        "id": "calloutText",
+        "label": "Text",
+        "default": "Get started right away with our quick start guide."
+      },
+      {
+        "id": "calloutTextColor",
+        "label": "Text color",
+        "type": "color",
+        "default": "#ffffff"
+      },
+      {
+        "id": "calloutBackgroundColor",
+        "label": "Background color",
+        "type": "color",
+        "default": "#FF385C"
+      }
+    ]
+  },
+  {
+    "name": "Key links",
+    "section": true,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "showKeyLinks",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "keyLinksImageAspect",
+        "label": "Image aspect ratio",
+        "options": [
+          {
+            "value": "aspect-auto",
+            "label": "Original"
+          },
+          {
+            "value": "aspect-square",
+            "label": "Square"
+          },
+          {
+            "value": "aspect-square rounded-full",
+            "label": "Circle"
+          }
+        ],
+        "default": "aspect-square rounded-full"
+      },
+      {
+        "type": "range",
+        "id": "keyLinksImageWidth",
+        "label": "Image maximum width",
+        "min": 50,
+        "max": 600,
+        "step": 1,
+        "unit": "px",
+        "default": 50
+      },
+      {
+        "type": "select",
+        "id": "keyLinksAlignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Center"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ],
+        "default": "text-center"
+      },
+      {
+        "type": "checkbox",
+        "id": "keyLinksBorders",
+        "label": "Show borders",
+        "default": true
+      },
+      {
+        "id": "keyLinksTextColor",
+        "label": "Text color",
+        "type": "color",
+        "default": "#222222"
+      },
+      {
+        "id": "keyLinksBackgroundColor",
+        "label": "Card background color",
+        "type": "color",
+        "default": "#ffffff"
+      },
+      {
+        "id": "keyLinksLinkColor",
+        "label": "Link color",
+        "type": "color",
+        "default": "#FF385C"
+      },
+      {
+        "type": "header",
+        "content": "First link"
+      },
+      {
+        "type": "image_picker",
+        "id": "keyLinksImage_1",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksHeading_1",
+        "label": "Heading",
+        "default": "Getting started"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksDescription_1",
+        "label": "Text",
+        "default": "Learn the basics to set up and start using our platform in just minutes."
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrl_1",
+        "label": "Link",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrlText_1",
+        "label": "Text",
+        "default": "Read more"
+      },
+      {
+        "type": "header",
+        "content": "Second link"
+      },
+      {
+        "type": "image_picker",
+        "id": "keyLinksImage_2",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksHeading_2",
+        "label": "Heading",
+        "default": "Documentation"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksDescription_2",
+        "label": "Text",
+        "default": "Access our comprehensive library of guides, tutorials, and troubleshooting articles."
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrl_2",
+        "label": "Link",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrlText_2",
+        "label": "Text",
+        "default": "Read more"
+      },
+      {
+        "type": "header",
+        "content": "Third link"
+      },
+      {
+        "type": "image_picker",
+        "id": "keyLinksImage_3",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksHeading_3",
+        "label": "Heading",
+        "default": "Help and FAQs"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksDescription_3",
+        "label": "Text",
+        "default": "Find answers to common questions and issues in our knowledge base."
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrl_3",
+        "label": "Link",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "keyLinksUrlText_3",
+        "label": "Text",
+        "default": "Read more"
+      }
+    ]
+  },
+  {
+    "name": "Promoted articles",
+    "section": true,
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Select articles to promote in Docs > Settings > Interactive features."
+      },
+      {
+        "type": "checkbox",
+        "id": "showPromotedArticles",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "promotedArticlesHeading",
+        "label": "Heading",
+        "default": "Promoted articles"
+      }
+    ]
+  },
+  {
+    "name": "Categories",
+    "section": true,
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Add categories in Categories > Add category."
+      },
+      {
+        "type": "checkbox",
+        "id": "showCategories",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "categoriesHeading",
+        "label": "Heading",
+        "default": "Categories"
+      },
+      {
+        "type": "categories",
+        "label": "Categories",
+        "id": "categories"
+      },
+      {
+        "type": "select",
+        "id": "categoriesImageAspect",
+        "label": "Image aspect ratio",
+        "options": [
+          {
+            "value": "aspect-auto",
+            "label": "Original"
+          },
+          {
+            "value": "aspect-square",
+            "label": "Square"
+          },
+          {
+            "value": "aspect-square rounded-full",
+            "label": "Circle"
+          }
+        ],
+        "default": "aspect-square rounded-full"
+      },
+      {
+        "type": "checkbox",
+        "id": "showCategoriesButton",
+        "label": "Show 'See all articles' button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "categoriesBorders",
+        "label": "Show borders",
+        "default": false
+      },
+      {
+        "id": "categoriesTextColor",
+        "label": "Text color",
+        "type": "color",
+        "default": "#222222"
+      },
+      {
+        "id": "categoriesBackgroundColor",
+        "label": "Card background color",
+        "type": "color",
+        "default": "#F4F4F4"
+      },
+      {
+        "id": "categoriesLinkColor",
+        "label": "Link color",
+        "type": "color",
+        "default": "#FF385C"
+      }
+    ]
+  },
+  {
+    "name": "External links",
+    "section": true,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "showExternalLinks",
+        "label": "Show section",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "externalLinksAlignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Center"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ],
+        "default": "text-center"
+      },
+      {
+        "type": "header",
+        "content": "First link"
+      },
+      {
+        "type": "select",
+        "id": "externalLinksIcon_1",
+        "label": "Icon",
+        "default": "tools",
+        "options": [
+          {
+            "value": "help",
+            "label": "Help"
+          },
+          {
+            "value": "search",
+            "label": "Search"
+          },
+          {
+            "value": "chat",
+            "label": "Chat"
+          },
+          {
+            "value": "book",
+            "label": "Book"
+          },
+          {
+            "value": "info",
+            "label": "Info"
+          },
+          {
+            "value": "settings",
+            "label": "Settings"
+          },
+          {
+            "value": "tools",
+            "label": "Tools"
+          },
+          {
+            "value": "warning",
+            "label": "Warning"
+          },
+          {
+            "value": "check",
+            "label": "Check"
+          },
+          {
+            "value": "globe",
+            "label": "Globe"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "externalLinksImage_1",
+        "label": "Custom icon"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksHeading_1",
+        "label": "Heading",
+        "default": "Submit a support ticket"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksDescription_1",
+        "label": "Text",
+        "default": "Get help from our team of experts by submitting a support ticket through our online portal."
+      },
+      {
+        "type": "text",
+        "id": "externalLinksUrl_1",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Second link"
+      },
+      {
+        "type": "select",
+        "id": "externalLinksIcon_2",
+        "label": "Icon",
+        "default": "tools",
+        "options": [
+          {
+            "value": "help",
+            "label": "Help"
+          },
+          {
+            "value": "search",
+            "label": "Search"
+          },
+          {
+            "value": "chat",
+            "label": "Chat"
+          },
+          {
+            "value": "book",
+            "label": "Book"
+          },
+          {
+            "value": "info",
+            "label": "Info"
+          },
+          {
+            "value": "settings",
+            "label": "Settings"
+          },
+          {
+            "value": "tools",
+            "label": "Tools"
+          },
+          {
+            "value": "warning",
+            "label": "Warning"
+          },
+          {
+            "value": "check",
+            "label": "Check"
+          },
+          {
+            "value": "globe",
+            "label": "Globe"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "externalLinksImage_2",
+        "label": "Custom icon"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksHeading_2",
+        "label": "Heading",
+        "default": "Add a feature request"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksDescription_2",
+        "label": "Text",
+        "default": "Suggest new features and improvements to help us enhance our platform and services."
+      },
+      {
+        "type": "text",
+        "id": "externalLinksUrl_2",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Third link"
+      },
+      {
+        "type": "select",
+        "id": "externalLinksIcon_3",
+        "label": "Icon",
+        "default": "tools",
+        "options": [
+          {
+            "value": "help",
+            "label": "Help"
+          },
+          {
+            "value": "search",
+            "label": "Search"
+          },
+          {
+            "value": "chat",
+            "label": "Chat"
+          },
+          {
+            "value": "book",
+            "label": "Book"
+          },
+          {
+            "value": "info",
+            "label": "Info"
+          },
+          {
+            "value": "settings",
+            "label": "Settings"
+          },
+          {
+            "value": "tools",
+            "label": "Tools"
+          },
+          {
+            "value": "warning",
+            "label": "Warning"
+          },
+          {
+            "value": "check",
+            "label": "Check"
+          },
+          {
+            "value": "globe",
+            "label": "Globe"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "externalLinksImage_3",
+        "label": "Custom icon"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksHeading_3",
+        "label": "Heading",
+        "default": "Community forum"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksDescription_3",
+        "label": "Text",
+        "default": "Access our knowledge base and community forums to find answers and share your insights."
+      },
+      {
+        "type": "text",
+        "id": "externalLinksUrl_3",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Fourth link"
+      },
+      {
+        "type": "select",
+        "id": "externalLinksIcon_4",
+        "label": "Icon",
+        "default": "tools",
+        "options": [
+          {
+            "value": "help",
+            "label": "Help"
+          },
+          {
+            "value": "search",
+            "label": "Search"
+          },
+          {
+            "value": "chat",
+            "label": "Chat"
+          },
+          {
+            "value": "book",
+            "label": "Book"
+          },
+          {
+            "value": "info",
+            "label": "Info"
+          },
+          {
+            "value": "settings",
+            "label": "Settings"
+          },
+          {
+            "value": "tools",
+            "label": "Tools"
+          },
+          {
+            "value": "warning",
+            "label": "Warning"
+          },
+          {
+            "value": "check",
+            "label": "Check"
+          },
+          {
+            "value": "globe",
+            "label": "Globe"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "externalLinksImage_4",
+        "label": "Custom icon"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksHeading_4",
+        "label": "Heading",
+        "default": "Help center"
+      },
+      {
+        "type": "text",
+        "id": "externalLinksDescription_4",
+        "label": "Text",
+        "default": "Browse our help center for articles, FAQs, and guides to troubleshoot common issues."
+      },
+      {
+        "type": "text",
+        "id": "externalLinksUrl_4",
+        "label": "Link",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "section": true,
+    "settings": [
+      {
+        "type": "header",
+        "content": "First link"
+      },
+      {
+        "type": "text",
+        "id": "footerText_1",
+        "label": "Text",
+        "default": "Terms"
+      },
+      {
+        "type": "text",
+        "id": "footerUrl_1",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Second link"
+      },
+      {
+        "type": "text",
+        "id": "footerText_2",
+        "label": "Text",
+        "default": "Privacy"
+      },
+      {
+        "type": "text",
+        "id": "footerUrl_2",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Third link"
+      },
+      {
+        "type": "text",
+        "id": "footerText_3",
+        "label": "Text",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "footerUrl_3",
+        "label": "Link",
+        "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Social links"
+      },
+      {
+        "type": "text",
+        "id": "tiktok",
+        "label": "TikTok",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "instagram",
+        "label": "Instagram",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "snapchat",
+        "label": "Snapchat",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "x",
+        "label": "X",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "facebook",
+        "label": "Facebook",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "youtube",
+        "label": "YouTube",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "pinterest",
+        "label": "Pinterest",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "discord",
+        "label": "Discord",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "reddit",
+        "label": "Reddit",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "slack",
+        "label": "Slack",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "github",
+        "label": "GitHub",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "stackoverflow",
+        "label": "Stack Overflow",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "devto",
+        "label": "Dev.to",
+        "default": ""
+      }
+    ]
+  }
+]
