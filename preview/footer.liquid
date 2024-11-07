@@ -1,85 +1,121 @@
-<footer class="bg-white">
-  <div class="w-full max-w-[1440px] px-[5rem] mx-auto text-gray-600">
-    <div class="py-[3rem] grid grid-cols-3 justify-between">
-      <div class="flex flex-col gap-3">
-        <span class="font-medium">{{ locales.footer.support }}</span>
-        <ul class="flex flex-col gap-3">
-          <li><a href="#" class="hover:underline">{{ locales.general.help }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.faq }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.privacyPolicy }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.termsOfService }}</a></li>
-        </ul>
+<footer id="Footer" class="bg-[var(--background-color)] text-[color:var(--text-color)] text-[length:12px] leading-normal font-[family-name:var(--font-family)]">
+  <div class="mx-auto flex flex-col md:flex-row gap-4 max-w-7xl items-center justify-between p-6 md:px-8">
+    <div class="opacity-70">© {{ 'now' | date: '%Y' }} {{ site.name }}</div>
+    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+      <div class="flex flex-wrap md:flex-nowrap items-center gap-4">
+        {% assign is_first_link = true %}
+        {% for i in (1..3) %}
+          {% assign footer_text_id = 'footerText_' | append: i %}
+          {% assign footer_url_id = 'footerUrl_' | append: i %}
+          {% if settings[footer_text_id] != blank %}
+            {% unless is_first_link %}
+              <div class="h-4 w-px opacity-20 bg-[var(--text-color)]"></div>
+            {% endunless %}
+            <a href="{{ settings[footer_url_id] }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">{{ settings[footer_text_id] }}</a>
+            {% assign is_first_link = false %}
+          {% endif %}
+        {% endfor %}
       </div>
-
-      <div class="flex flex-col gap-3">
-        <span class="font-medium">{{ locales.footer.community }}</span>
-        <ul class="flex flex-col gap-3">
-          <li><a href="#" class="hover:underline">Forum</a></li>
-          <li><a href="#" class="hover:underline">Discord</a></li>
-          <li><a href="#" class="hover:underline">Twitter</a></li>
-          <li><a href="#" class="hover:underline">Facebook</a></li>
-        </ul>
-      </div>
-
-      <div class="flex flex-col gap-3">
-        <span class="font-medium">{{ locales.footer.company }}</span>
-        <ul class="flex flex-col gap-3">
-          <li><a href="#" class="hover:underline">{{ locales.footer.about }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.blog }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.jobs }}</a></li>
-          <li><a href="#" class="hover:underline">{{ locales.footer.press }}</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="py-6 flex gap-2 items-center">
-      <div>© {{ 'now' | date: '%Y' }} {{ site.name }}</div>
-      <div>·</div>
-      <a href="#" class="hover:underline">{{ locales.footer.terms }}</a>
-      <div>·</div>
-      <a href="#" class="hover:underline">{{ locales.footer.sitemap}}</a>
-      <div>·</div>
-      <a href="#" class="hover:underline">{{ locales.footer.privacy }}</a>
-      <div>·</div>
-      <a href="#" class="hover:underline">{{ locales.footer.yourPrivacyChoices }}</a>
-      <svg width="26" height="12" fill="none" class="relative top-[2px]">
-        <rect x="0.5" y="0.5" width="25" height="11" rx="5.5" fill="#fff">
-        </rect>
-        <path d="M14 1h7a5 5 0 010 10H11l3-10z" fill="#06F">
-        </path>
-        <path d="M4.5 6.5l1.774 1.774a.25.25 0 00.39-.049L9.5 3.5" stroke="#06F" stroke-linecap="round">
-        </path>
-        <path d="M16.5 3.5L19 6m0 0l2.5 2.5M19 6l2.5-2.5M19 6l-2.5 2.5" stroke="#fff" stroke-linecap="round">
-        </path>
-        <rect x="0.5" y="0.5" width="25" height="11" rx="5.5" stroke="#06F">
-        </rect>
-      </svg>
-
-      <div class="ml-auto mr-0 gap-4 flex">
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 32"
-            style="display:block;height:18px;width:18px;fill:currentColor"
-            aria-label="{{ locales.footer.navigateTo }} Facebook"
-            role="img" focusable="false">
-              <path d="M30 0a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"></path>
-              <path
-                fill="#fff"
-                d="M22.94 16H18.5v-3c0-1.27.62-2.5 2.6-2.5h2.02V6.56s-1.83-.31-3.58-.31c-3.65 0-6.04 2.21-6.04 6.22V16H9.44v4.62h4.06V32h5V20.62h3.73z"
-              >
-              </path>
-          </svg>
-        </a>
-
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;height:18px;width:18px;fill:currentColor" aria-label="{{ locales.footer.navigateTo }} Twitter" role="img" focusable="false"><path d="M32 4v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4z"></path><path fill="#fff" d="M18.66 7.99a4.5 4.5 0 0 0-2.28 4.88A12.31 12.31 0 0 1 7.3 8.25a4.25 4.25 0 0 0 1.38 5.88c-.69 0-1.38-.13-2-.44a4.54 4.54 0 0 0 3.5 4.31 4.3 4.3 0 0 1-2 .06 4.64 4.64 0 0 0 4.19 3.13A8.33 8.33 0 0 1 5.8 23a12.44 12.44 0 0 0 19.32-11.19A7.72 7.72 0 0 0 27.3 9.5a8.3 8.3 0 0 1-2.5.75 4.7 4.7 0 0 0 2-2.5c-.87.5-1.81.87-2.81 1.06a4.5 4.5 0 0 0-5.34-.83z"></path></svg>
-        </a>
-
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display:block;height:18px;width:18px;fill:currentColor" aria-label="{{ locales.footer.navigateTo }} Instagram" role="img" focusable="false"><path d="M30 0H2a2 2 0 0 0-2 2v28c0 1.1.9 2 2 2h28a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"></path><path fill="#fff" d="M15.71 4h1.25c2.4 0 2.85.02 3.99.07 1.28.06 2.15.26 2.91.56.79.3 1.46.72 2.13 1.38.6.6 1.08 1.33 1.38 2.13l.02.06c.28.74.48 1.58.54 2.8l.01.4c.05 1.02.06 1.63.06 4.4v.92c0 2.6-.02 3.05-.07 4.23a8.78 8.78 0 0 1-.56 2.91c-.3.8-.77 1.53-1.38 2.13a5.88 5.88 0 0 1-2.13 1.38l-.06.02c-.74.28-1.59.48-2.8.53l-.4.02c-1.02.05-1.63.06-4.4.06h-.92a73.1 73.1 0 0 1-4.23-.07 8.78 8.78 0 0 1-2.91-.56c-.8-.3-1.53-.77-2.13-1.38a5.88 5.88 0 0 1-1.38-2.13l-.02-.06a8.84 8.84 0 0 1-.54-2.8l-.01-.37A84.75 84.75 0 0 1 4 16.29v-1c0-2.62.02-3.06.07-4.24.06-1.26.26-2.13.55-2.88l.01-.03c.3-.8.77-1.53 1.38-2.13a5.88 5.88 0 0 1 2.13-1.38l.06-.02a8.84 8.84 0 0 1 2.8-.54l.37-.01C12.39 4 12.99 4 15.71 4zm.91 2.16h-1.24c-2.3 0-2.91.01-3.81.05l-.42.02c-1.17.05-1.8.25-2.23.41-.56.22-.96.48-1.38.9-.4.41-.67.8-.88 1.35l-.03.06a6.7 6.7 0 0 0-.4 2.2l-.02.45c-.04.9-.05 1.53-.05 3.94v1.08c0 2.64.02 3.05.07 4.23v.07c.06 1.13.25 1.74.42 2.16.21.56.47.96.9 1.38.4.4.8.67 1.34.88l.06.03a6.7 6.7 0 0 0 2.2.4l.45.02c.9.04 1.53.05 3.94.05h1.08c2.64 0 3.05-.02 4.23-.07h.07a6.51 6.51 0 0 0 2.16-.42c.52-.19.99-.5 1.38-.9.4-.4.67-.8.88-1.34l.03-.06a6.7 6.7 0 0 0 .4-2.2l.02-.45c.04-.9.05-1.53.05-3.94v-1.09c0-2.63-.02-3.04-.07-4.22v-.07a6.51 6.51 0 0 0-.42-2.16c-.19-.52-.5-.99-.9-1.38a3.7 3.7 0 0 0-1.34-.88l-.06-.03a6.63 6.63 0 0 0-2.16-.4l-.46-.02c-.9-.04-1.5-.05-3.8-.05zM16 9.84a6.16 6.16 0 1 1 0 12.32 6.16 6.16 0 0 1 0-12.32zM16 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm6.4-3.85a1.44 1.44 0 1 1 0 2.88 1.44 1.44 0 0 1 0-2.88z"></path></svg>
-        </a>
-      </div>
-    </div>
+      <ul class="flex flex-wrap justify-center md:justify-end gap-4">
+        {% if settings.tiktok != blank %}
+          <li>
+            <a href="{{ settings.tiktok }}" aria-label="{{ locales.footer.tiktok }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 12C8.34315 12 7 13.3431 7 15C7 16.6569 8.34315 18 10 18C11.6569 18 13 16.6569 13 15V6C13.3333 7 14.6 9 17 9" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.instagram != blank %}
+          <li>
+            <a href="{{ settings.instagram }}" aria-label="{{ locales.footer.instagram }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16Z" stroke="currentColor" stroke-width="1"></path><path d="M17.5 6.51L17.51 6.49889" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.snapchat != blank %}
+          <li>
+            <a href="{{ settings.snapchat }}" aria-label="{{ locales.footer.snapchat }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><rect width="24" height="24" stroke-width="1" fill="none"></rect><path d="M18 8.75004C18 -0.250032 6 -0.249992 6 8.75004V10.25L4.37231 10.25C3.78861 10.25 3.54858 10.999 4.02356 11.3383L6 12.75C5.66667 13.9167 4.3 16.45 1.5 17.25C1.83333 17.75 2.8 18.75 4 18.75L5 20.25L7.5 19.75C8.33333 20.4167 10.4 21.75 12 21.75C13.6 21.75 15.6667 20.4167 16.5 19.75L19 20.25L20 18.75C21.2 18.75 22.1667 17.75 22.5 17.25C19.7 16.45 18.3333 13.9167 18 12.75L19.9764 11.3383C20.4514 10.999 20.2114 10.25 19.6277 10.25L18 10.25V8.75004Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.x != blank %}
+          <li>
+            <a href="{{ settings.x }}" aria-label="{{ locales.footer.x }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M16.8198 20.7684L3.75317 3.96836C3.44664 3.57425 3.72749 3 4.22678 3H6.70655C6.8917 3 7.06649 3.08548 7.18016 3.23164L20.2468 20.0316C20.5534 20.4258 20.2725 21 19.7732 21H17.2935C17.1083 21 16.9335 20.9145 16.8198 20.7684Z" stroke="currentColor" stroke-width="1"></path><path d="M20 3L4 21" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.facebook != blank %}
+          <li>
+            <a href="{{ settings.facebook }}" aria-label="{{ locales.footer.facebook }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M17 2H14C12.6739 2 11.4021 2.52678 10.4645 3.46447C9.52678 4.40215 9 5.67392 9 7V10H6V14H9V22H13V14H16L17 10H13V7C13 6.73478 13.1054 6.48043 13.2929 6.29289C13.4804 6.10536 13.7348 6 14 6H17V2Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.youtube != blank %}
+          <li>
+            <a href="{{ settings.youtube }}" aria-label="{{ locales.footer.youtube }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M14 12L10.5 14V10L14 12Z" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 12.7075V11.2924C2 8.39705 2 6.94939 2.90549 6.01792C3.81099 5.08645 5.23656 5.04613 8.08769 4.96549C9.43873 4.92728 10.8188 4.8999 12 4.8999C13.1812 4.8999 14.5613 4.92728 15.9123 4.96549C18.7634 5.04613 20.189 5.08645 21.0945 6.01792C22 6.94939 22 8.39705 22 11.2924V12.7075C22 15.6028 22 17.0505 21.0945 17.9819C20.189 18.9134 18.7635 18.9537 15.9124 19.0344C14.5613 19.0726 13.1812 19.1 12 19.1C10.8188 19.1 9.43867 19.0726 8.0876 19.0344C5.23651 18.9537 3.81097 18.9134 2.90548 17.9819C2 17.0505 2 15.6028 2 12.7075Z" stroke="currentColor" stroke-width="1"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.pinterest != blank %}
+          <li>
+            <a href="{{ settings.pinterest }}" aria-label="{{ locales.footer.pinterest }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M8 14.5C5 10 9.46243 6.5 12.5 6.5C15.5376 6.5 18 8.15367 18 12C18 15.0376 16 17 14 17C12 17 11 15 11.5 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 10L9 21.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.linkedin != blank %}
+          <li>
+            <a href="{{ settings.linkedin }}" aria-label="{{ locales.footer.linkedin }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 17V13.5V10" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 17V13.75M11 10V13.75M11 13.75C11 10 17 10 17 13.75V17" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 7.01L7.01 6.99889" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.reddit != blank %}
+          <li>
+            <a href="{{ settings.reddit }}" aria-label="{{ locales.footer.reddit }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50" fill="currentColor"><path d="M 29 3 C 28.0625 3 27.164063 3.382813 26.5 4 C 25.835938 4.617188 25.363281 5.433594 25 6.40625 C 24.355469 8.140625 24.085938 10.394531 24.03125 13.03125 C 19.234375 13.179688 14.820313 14.421875 11.28125 16.46875 C 10.214844 15.46875 8.855469 14.96875 7.5 14.96875 C 6.089844 14.96875 4.675781 15.511719 3.59375 16.59375 C 1.425781 18.761719 1.425781 22.238281 3.59375 24.40625 L 3.84375 24.65625 C 3.3125 26.035156 3 27.488281 3 29 C 3 33.527344 5.566406 37.585938 9.5625 40.4375 C 13.558594 43.289063 19.007813 45 25 45 C 30.992188 45 36.441406 43.289063 40.4375 40.4375 C 44.433594 37.585938 47 33.527344 47 29 C 47 27.488281 46.6875 26.035156 46.15625 24.65625 L 46.40625 24.40625 C 48.574219 22.238281 48.574219 18.761719 46.40625 16.59375 C 45.324219 15.511719 43.910156 14.96875 42.5 14.96875 C 41.144531 14.96875 39.785156 15.46875 38.71875 16.46875 C 35.195313 14.433594 30.800781 13.191406 26.03125 13.03125 C 26.09375 10.546875 26.363281 8.46875 26.875 7.09375 C 27.164063 6.316406 27.527344 5.757813 27.875 5.4375 C 28.222656 5.117188 28.539063 5 29 5 C 29.460938 5 29.683594 5.125 30.03125 5.40625 C 30.378906 5.6875 30.785156 6.148438 31.3125 6.6875 C 32.253906 7.652344 33.695313 8.714844 36.09375 8.9375 C 36.539063 11.238281 38.574219 13 41 13 C 43.75 13 46 10.75 46 8 C 46 5.25 43.75 3 41 3 C 38.605469 3 36.574219 4.710938 36.09375 6.96875 C 34.3125 6.796875 33.527344 6.109375 32.75 5.3125 C 32.300781 4.851563 31.886719 4.3125 31.3125 3.84375 C 30.738281 3.375 29.9375 3 29 3 Z M 41 5 C 42.667969 5 44 6.332031 44 8 C 44 9.667969 42.667969 11 41 11 C 39.332031 11 38 9.667969 38 8 C 38 6.332031 39.332031 5 41 5 Z M 25 15 C 30.609375 15 35.675781 16.613281 39.28125 19.1875 C 42.886719 21.761719 45 25.226563 45 29 C 45 32.773438 42.886719 36.238281 39.28125 38.8125 C 35.675781 41.386719 30.609375 43 25 43 C 19.390625 43 14.324219 41.386719 10.71875 38.8125 C 7.113281 36.238281 5 32.773438 5 29 C 5 25.226563 7.113281 21.761719 10.71875 19.1875 C 14.324219 16.613281 19.390625 15 25 15 Z M 7.5 16.9375 C 8.203125 16.9375 8.914063 17.148438 9.53125 17.59375 C 7.527344 19.03125 5.886719 20.769531 4.75 22.71875 C 3.582031 21.296875 3.660156 19.339844 5 18 C 5.714844 17.285156 6.609375 16.9375 7.5 16.9375 Z M 42.5 16.9375 C 43.390625 16.9375 44.285156 17.285156 45 18 C 46.339844 19.339844 46.417969 21.296875 45.25 22.71875 C 44.113281 20.769531 42.472656 19.03125 40.46875 17.59375 C 41.085938 17.148438 41.796875 16.9375 42.5 16.9375 Z M 17 22 C 14.800781 22 13 23.800781 13 26 C 13 28.199219 14.800781 30 17 30 C 19.199219 30 21 28.199219 21 26 C 21 23.800781 19.199219 22 17 22 Z M 33 22 C 30.800781 22 29 23.800781 29 26 C 29 28.199219 30.800781 30 33 30 C 35.199219 30 37 28.199219 37 26 C 37 23.800781 35.199219 22 33 22 Z M 17 24 C 18.117188 24 19 24.882813 19 26 C 19 27.117188 18.117188 28 17 28 C 15.882813 28 15 27.117188 15 26 C 15 24.882813 15.882813 24 17 24 Z M 33 24 C 34.117188 24 35 24.882813 35 26 C 35 27.117188 34.117188 28 33 28 C 31.882813 28 31 27.117188 31 26 C 31 24.882813 31.882813 24 33 24 Z M 34.15625 33.84375 C 34.101563 33.851563 34.050781 33.859375 34 33.875 C 33.683594 33.9375 33.417969 34.144531 33.28125 34.4375 C 33.28125 34.4375 32.757813 35.164063 31.4375 36 C 30.117188 36.835938 28.058594 37.6875 25 37.6875 C 21.941406 37.6875 19.882813 36.835938 18.5625 36 C 17.242188 35.164063 16.71875 34.4375 16.71875 34.4375 C 16.492188 34.082031 16.066406 33.90625 15.65625 34 C 15.332031 34.082031 15.070313 34.316406 14.957031 34.632813 C 14.84375 34.945313 14.894531 35.292969 15.09375 35.5625 C 15.09375 35.5625 15.863281 36.671875 17.46875 37.6875 C 19.074219 38.703125 21.558594 39.6875 25 39.6875 C 28.441406 39.6875 30.925781 38.703125 32.53125 37.6875 C 34.136719 36.671875 34.90625 35.5625 34.90625 35.5625 C 35.207031 35.273438 35.296875 34.824219 35.128906 34.441406 C 34.960938 34.058594 34.574219 33.820313 34.15625 33.84375 Z"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.discord != blank %}
+          <li>
+            <a href="{{ settings.discord }}" aria-label="{{ locales.footer.discord }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M5.5 16C10.5 18.5 13.5 18.5 18.5 16" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.5 17.5L16.5 19.5C16.5 19.5 20.6713 18.1717 22 16C22 15 22.5301 7.85339 19 5.5C17.5 4.5 15 4 15 4L14 6H12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.52832 17.5L7.52832 19.5C7.52832 19.5 3.35699 18.1717 2.02832 16C2.02832 15 1.49823 7.85339 5.02832 5.5C6.52832 4.5 9.02832 4 9.02832 4L10.0283 6H12.0283" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.5 14C7.67157 14 7 13.1046 7 12C7 10.8954 7.67157 10 8.5 10C9.32843 10 10 10.8954 10 12C10 13.1046 9.32843 14 8.5 14Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.5 14C14.6716 14 14 13.1046 14 12C14 10.8954 14.6716 10 15.5 10C16.3284 10 17 10.8954 17 12C17 13.1046 16.3284 14 15.5 14Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.slack != blank %}
+          <li>
+            <a href="{{ settings.slack }}" aria-label="{{ locales.footer.slack }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 10C13 11.1046 13.8954 12 15 12C16.1046 12 17 11.1046 17 10V5C17 3.89543 16.1046 3 15 3C13.8954 3 13 3.89543 13 5V10ZM5 8C3.89543 8 3 8.89543 3 10C3 11.1046 3.89543 12 5 12H10C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8H5ZM15 13C13.8954 13 13 13.8954 13 15C13 16.1046 13.8954 17 15 17H20C21.1046 17 22 16.1046 22 15C22 13.8954 21.1046 13 20 13H15ZM10 22C8.89543 22 8 21.1046 8 20L8 15C8 13.8954 8.89543 13 10 13C11.1046 13 12 13.8954 12 15V20C12 21.1046 11.1046 22 10 22ZM8 5C8 3.89543 8.89543 3 10 3C11.1046 3 12 3.89543 12 5V7H10C8.89543 7 8 6.10457 8 5ZM3 15C3 16.1046 3.89543 17 5 17C6.10457 17 7 16.1046 7 15V13H5C3.89543 13 3 13.8954 3 15ZM17 20C17 21.1046 16.1046 22 15 22C13.8954 22 13 21.1046 13 20V18H15C16.1046 18 17 18.8954 17 20ZM22 10C22 8.89543 21.1046 8 20 8C18.8954 8 18 8.89543 18 10V12H20C21.1046 12 22 11.1046 22 10Z" fill="currentColor"/></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.github != blank %}
+          <li>
+            <a href="{{ settings.github }}" aria-label="{{ locales.footer.github }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M16 22.0268V19.1568C16.0375 18.68 15.9731 18.2006 15.811 17.7506C15.6489 17.3006 15.3929 16.8902 15.06 16.5468C18.2 16.1968 21.5 15.0068 21.5 9.54679C21.4997 8.15062 20.9627 6.80799 20 5.79679C20.4558 4.5753 20.4236 3.22514 19.91 2.02679C19.91 2.02679 18.73 1.67679 16 3.50679C13.708 2.88561 11.292 2.88561 8.99999 3.50679C6.26999 1.67679 5.08999 2.02679 5.08999 2.02679C4.57636 3.22514 4.54413 4.5753 4.99999 5.79679C4.03011 6.81549 3.49251 8.17026 3.49999 9.57679C3.49999 14.9968 6.79998 16.1868 9.93998 16.5768C9.61098 16.9168 9.35725 17.3222 9.19529 17.7667C9.03334 18.2112 8.96679 18.6849 8.99999 19.1568V22.0268" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 20.0267C6 20.9999 3.5 20.0267 2 17.0267" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.stackoverflow != blank %}
+          <li>
+            <a href="{{ settings.stackoverflow }}" aria-label="{{ locales.footer.stackoverflow }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M19 15V21H5V15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 17L8 17" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.9126 14.6633L8.0874 13" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.7127 12.3809L9.46228 9" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.1728 10.6423L12.0444 5.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20.0338 8.80409L15.1085 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.devto != blank %}
+          <li>
+            <a href="{{ settings.devto }}" aria-label="{{ locales.footer.devto }}" class="opacity-70 hover:opacity-100 transition-opacity duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"><rect width="512" height="512" rx="15%" fill="currentColor"/><path fill="var(--background-color)" d="M140.47 203.94h-17.44v104.47h17.45c10.155-.545 17.358-8.669 17.47-17.41v-69.65c-.696-10.364-7.796-17.272-17.48-17.41zm45.73 87.25c0 18.81-11.61 47.31-48.36 47.25h-46.4V172.98h47.38c35.44 0 47.36 28.46 47.37 47.28zm100.68-88.66H233.6v38.42h32.57v29.57H233.6v38.41h53.29v29.57h-62.18c-11.16.29-20.44-8.53-20.72-19.69V193.7c-.27-11.15 8.56-20.41 19.71-20.69h63.19zm103.64 115.29c-13.2 30.75-36.85 24.63-47.44 0l-38.53-144.8h32.57l29.71 113.72 29.57-113.72h32.58z"/></svg>
+            </a>
+          </li>
+        {% endif %}        
+      </ul>
+    </div> 
   </div>
 </footer>
