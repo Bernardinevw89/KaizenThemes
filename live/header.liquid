@@ -1,8 +1,10 @@
 {%- liquid
-  assign header_bg_color = settings.backgroundColor
+  assign header_bg_color = "transparent"
   if settings.showHeaderBackground
     assign header_bg_color = settings.headerBackgroundColor
   endif
+
+  assign overlay_hero = settings.overlayHeroSection
 -%}
 
 <style>
@@ -30,11 +32,11 @@
   <!-- Button link -->
   {% if settings.headerLinkText != blank %}
     {% assign has_navbar = true %}
-    <a href="{{ settings.headerLinkUrl }}" class="self-start md:self-center w-full md:w-auto text-center md:text-left text-[1.5rem] leading-[2rem] md:text-[length:var(--body-font-size)] md:leading-normal rounded-[var(--border-radius)] bg-[var(--accent-color)] px-4 py-2 md:px-2.5 md:py-1.5 text-[color:var(--background-color)] shadow-sm transition-opacity hover:opacity-80">{{ settings.headerLinkText }}</a>
+    <a href="{{ settings.headerLinkUrl }}" class="self-start md:self-center w-full md:w-auto text-center md:text-left text-[20px] leading-[2rem] md:text-[length:var(--body-font-size)] md:leading-normal rounded-[var(--border-radius-button)] bg-[var(--accent-color)] px-4 py-2 md:px-2.5 md:py-1.5 text-[color:var(--background-color)] shadow-sm transition-opacity hover:opacity-80">{{ settings.headerLinkText }}</a>
   {% endif %}
 {% endcapture %}
 
-<header id="Header" class="relative z-20 bg-[var(--header-background-color)] text-[color:var(--header-text-color)] text-[length:var(--body-font-size)] leading-normal font-[family-name:var(--font-family)]">
+<header id="Header" class="{% if overlay_hero %}absolute top-0 left-0 w-full{% else %}relative{% endif %} z-20 bg-[var(--header-background-color)] text-[color:var(--header-text-color)] text-[length:var(--body-font-size)] leading-normal font-[family-name:var(--font-family)]">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 md:px-8" aria-label="Global">
     <a href="/" class="-m-1.5 p-1.5">
       {% if settings.logo != blank %}
