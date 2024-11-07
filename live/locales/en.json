@@ -1,0 +1,86 @@
+{
+  "header": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "homepage": {
+    "search": "Search",
+    "popular": "Popular",
+    "seeAllArticles": "See all articles"
+  },
+  "post": {
+    "by": "By",
+    "continueReading": "Continue Reading"
+  },
+  "footer": {
+    "github": "Github",
+    "x": "X",
+    "discord": "Discord",
+    "tiktok": "TikTok",
+    "instagram": "Instagram",
+    "snapchat": "Snapchat",
+    "facebook": "Facebook",
+    "youtube": "YouTube",
+    "pinterest": "Pinterest",
+    "linkedin": "LinkedIn",
+    "reddit": "Reddit",
+    "slack": "Slack",
+    "stackoverflow": "Stack Overflow",
+    "devto": "Dev.to"
+  },
+  "general": {
+    "help": "Help"
+  },
+  "date": {
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "shortMonths": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
+  },
+  "onboarding": {
+    "promotedArticles": {
+      "heading_1": "Tips for smooth installation",
+      "description_1": "Learn how to set up your software with minimal hassle by following these step-by-step installation tips...",
+      "heading_2": "Optimizing system performance",
+      "description_2": "Boost the performance of your application by configuring settings tailored to your specific needs...",
+      "heading_3": "Best practices for updates",
+      "description_3": "Ensure your system runs optimally by adopting these best practices when updating your software...",
+      "heading_4": "Troubleshooting common issues",
+      "description_4": "Quick solutions to the most frequent technical problems encountered during installation or use..."
+    },
+    "categories": {
+      "heading_1": "Getting started with our platform",
+      "description_1": "Learn the basics to set up and start using our platform efficiently in just minutes.",
+      "heading_2": "Troubleshooting common issues",
+      "description_2": "Quick solutions to fix frequent problems and errors encountered by users like you.",
+      "heading_3": "How to configure your account settings",
+      "description_3": "A step-by-step guide on managing your account preferences, security settings, and notifications.",
+      "heading_4": "Best practices for optimal performance",
+      "description_4": "Ensure your system is running smoothly by following these expert tips and recommended configurations."
+    }
+  }
+}
