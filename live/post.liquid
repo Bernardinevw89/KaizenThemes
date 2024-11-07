@@ -1,304 +1,307 @@
 <header />
 
-  <main id="post-content">
-      <style>
-          :root {
-              --text-color: {{ settings.textColor }};
-              --background-color: {{ settings.backgroundColor }};
-          }
-          
-          #post-content {
-              background-color: var(--background-color);
-              color: var(--text-color);
-          }
-  
-          .flex-center {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-          }
-  
-          .container {
-              margin: auto;
-              width: 100%;
-              text-align: center;
-          }
-  
-          .container-md {
-              max-width: 58.333333%;
-          }
-  
-          .text-small {
-              margin: auto;
-              margin-top: 1.25rem;
-              margin-bottom: 1.25rem;
-              width: 83.333333%;
-              font-size: 0.875rem;
-              font-weight: 300;
-          }
-  
-          .text-small-md {
-              font-size: 1rem;
-          }
-  
-          .chips-container {
-              display: none;
-              margin: auto;
-              margin-top: 0.5rem;
-              margin-bottom: 0.5rem;
-              width: 16rem;
-              text-align: left;
-          }
-  
-          .chips-container[data-chips="true"] {
-              display: block;
-          }
-  
-          .chip {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              gap: 0.25rem;
-              border-radius: 9999px;
-              border: 1px solid;
-              padding-left: 0.375rem;
-              padding-right: 0.375rem;
-              padding-top: 0.125rem;
-              padding-bottom: 0.125rem;
-              font-size: 0.75rem;
-              font-weight: 500;
-          }
-  
-          .title {
-              margin-bottom: 2.5rem;
-              font-size: 1.875rem;
-              font-weight: 700;
-          }
-  
-          .title-md {
-              font-size: 3.75rem;
-          }
-  
-          .text-main {
-              margin: auto;
-              width: 83.333333%;
-          }
-  
-          .text-main-md {
-              font-size: 1.125rem;
-          }
-  
-          .user-link {
-              margin-top: 2rem;
-              margin-bottom: 2rem;
-          }
-  
-          .user-image-container {
-              position: relative;
-              display: inline-block;
-              overflow: hidden;
-              border-radius: 9999px;
-              vertical-align: middle;
-          }
-  
-          .user-image {
-              object-fit: cover;
-          }
-  
-          .avatar-placeholder {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 2.5rem;
-          }
-  
-          .user-info {
-              display: inline-block;
-              vertical-align: middle;
-          }
-  
-          .user-info-md {
-              font-size: 1.125rem;
-          }
-  
-          .user-info-name {
-              font-weight: 600;
-          }
-  
-          .image-container {
-              position: relative;
-              margin: auto;
-              margin-bottom: 2.5rem;
-              height: 20rem;
-              width: 100%;
-              max-width: 66.666667%;
-              overflow: hidden;
-          }
-  
-          .image-container-md {
-              margin-bottom: 5rem;
-              height: 37.5rem;
-              border-radius: 1rem;
-          }
-  
-          .image {
-              object-fit: cover;
-              width: 100%;
-              height: 100%;
-          }
-  
-          .continue-reading {
-              position: relative;
-              margin-bottom: 5rem;
-              margin-top: 2.5rem;
-          }
-  
-          .continue-reading-md {
-              margin-top: 5rem;
-          }
-  
-          .continue-reading-border {
-              position: absolute;
-              inset: 0;
-              display: flex;
-              align-items: center;
-          }
-  
-          .continue-reading-text {
-              padding-left: 0.5rem;
-              padding-right: 0.5rem;
-              font-size: 0.875rem;
-          }
-  
-          .posts-grid {
-              margin-left: 1.25rem;
-              margin-right: 1.25rem;
-              margin-bottom: 5rem;
-              display: grid;
-              max-width: 100%;
-              grid-template-columns: repeat(1, minmax(0, 1fr));
-              gap: 1rem 2rem;
-          }
-  
-          .posts-grid-md {
-              grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-  
-          .posts-grid-lg {
-              margin-left: auto;
-              margin-right: auto;
-              grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-  
-          /* Post Content is what is produced by the WYSIWYG editor */
-          .post-content {
-              padding: 1rem;
-              border-radius: 0.5rem;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-          }
-  
-          .post-content h1 {
-              font-size: 1.5rem;
-              font-weight: 700;
-              margin-bottom: 1rem;
-              width: fit-content;
-          }
-  
-          .post-content p {
-              margin-bottom: 1rem;
-              font-size: 1rem;
-          }
-  
-          .post-content a {
-              transition: color 0.2s;
-          }
-  
-          .post-content img {
-              border-radius: 0.375rem;
-              box-shadow: 0 4px 6px;
-          }
-      </style>
-      <div class="flex-center">
-          <div class="container container-md">
-              <p class="text-small text-small-md">
-                  {{ post.createdAt | date: "%Y-%m-%d" }}
-              </p>
-  
-              <div data-chips="{{ categories.size > 0 or labels.size > 0 }}" class="chips-container">
-                  <ul class="flex flex-wrap gap-1">
-                      {% for category in categories %}
-                      <li class="chip">
-                          {{ category.name }}
-                      </li>
-                      {% endfor %}
-                  </ul>
-  
-                  <ul class="mt-1 flex flex-wrap gap-1">
-                      {% for label in labels %}
-                      <li class="chip">
-                          {{ label.name }}
-                      </li>
-                      {% endfor %}
-                  </ul>
-              </div>
-  
-              <h1 id="post_title" class="title title-md">
-                  {{ post.title }}
-              </h1>
-              <p class="text-main text-main-md">
-                  {{ post.description }}
-              </p>
-          </div>
-          <a href="{{ user.username ? 'https://twitter.com/' | append: user.username : '#' }}" rel="noreferrer" target="_blank">
-              <div class="user-link">
-                  <div class="user-image-container size-8 size-12">
-                      {% if user.image %}
-                      <img alt="{{ user.name | default: 'User Avatar' }}" height="80" src="{{ user.image }}" width="80" class="user-image" />
-                      {% endif %}
-                  </div>
-                  <div class="user-info user-info-md">
-                    {% if currentLocale == "ja" %}
-                      <span class="user-info-name">{{ post.writtenBy.name }}</span>{{ locales.post.by }}
-                    {% else %}
-                      {{ locales.post.by }} <span class="user-info-name">{{ post.writtenBy.name }}</span>
+<main id="post-content">
+    <style>
+        :root {
+            --text-color: {{ settings.textColor }};
+            --background-color: {{ settings.backgroundColor }};
+            --accent-color: {{ settings.accentColor }};
+            --font-family: {{ settings.fontFamily }};
+            --heading-font-size: {{ settings.headingFontSize }};
+            --body-font-size: {{ settings.bodyFontSize }};
+        }
+        
+        #post-content {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .flex-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container-md {
+            max-width: 58.333333%;
+        }
+
+        .text-small {
+            margin: auto;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            width: 83.333333%;
+            font-size: 0.875rem;
+            font-weight: 300;
+        }
+
+        .text-small-md {
+            font-size: 1rem;
+        }
+
+        .chips-container {
+            display: none;
+            margin: auto;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            width: 16rem;
+            text-align: left;
+        }
+
+        .chips-container[data-chips="true"] {
+            display: block;
+        }
+
+        .chip {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.25rem;
+            border-radius: 9999px;
+            border: 1px solid;
+            padding-left: 0.375rem;
+            padding-right: 0.375rem;
+            padding-top: 0.125rem;
+            padding-bottom: 0.125rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .title {
+            margin-bottom: 2.5rem;
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+
+        .title-md {
+            font-size: 3.75rem;
+        }
+
+        .text-main {
+            margin: auto;
+            width: 83.333333%;
+        }
+
+        .text-main-md {
+            font-size: 1.125rem;
+        }
+
+        .user-link {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .user-image-container {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 9999px;
+            vertical-align: middle;
+        }
+
+        .user-image {
+            object-fit: cover;
+        }
+
+        .avatar-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .user-info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .user-info-md {
+            font-size: 1.125rem;
+        }
+
+        .user-info-name {
+            font-weight: 600;
+        }
+
+        .image-container {
+            position: relative;
+            margin: auto;
+            margin-bottom: 2.5rem;
+            height: 20rem;
+            width: 100%;
+            max-width: 66.666667%;
+            overflow: hidden;
+        }
+
+        .image-container-md {
+            margin-bottom: 5rem;
+            height: 37.5rem;
+            border-radius: 1rem;
+        }
+
+        .image {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .continue-reading {
+            position: relative;
+            margin-bottom: 5rem;
+            margin-top: 2.5rem;
+        }
+
+        .continue-reading-md {
+            margin-top: 5rem;
+        }
+
+        .continue-reading-border {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .continue-reading-text {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .posts-grid {
+            margin-left: 1.25rem;
+            margin-right: 1.25rem;
+            margin-bottom: 5rem;
+            display: grid;
+            max-width: 100%;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1rem 2rem;
+        }
+
+        .posts-grid-md {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .posts-grid-lg {
+            margin-left: auto;
+            margin-right: auto;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        /* Post Content is what is produced by the WYSIWYG editor */
+        .post-content {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .post-content h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .post-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .post-content a {
+            transition: color 0.2s;
+        }
+
+        .post-content img {
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px;
+        }
+    </style>
+    <div class="flex-center">
+        <div class="container container-md">
+            <p class="text-small text-small-md">
+                {{ post.createdAt | date: "%Y-%m-%d" }}
+            </p>
+
+            <div data-chips="{{ categories.size > 0 or labels.size > 0 }}" class="chips-container">
+                <ul class="flex flex-wrap gap-1">
+                    {% for category in categories %}
+                    <li class="chip">
+                        {{ category.name }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <ul class="mt-1 flex flex-wrap gap-1">
+                    {% for label in labels %}
+                    <li class="chip">
+                        {{ label.name }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <h1 id="post_title" class="title title-md">
+                {{ post.title }}
+            </h1>
+            <p class="text-main text-main-md">
+                {{ post.description }}
+            </p>
+        </div>
+        <a href="{{ user.username ? 'https://twitter.com/' | append: user.username : '#' }}" rel="noreferrer" target="_blank">
+            <div class="user-link">
+                <div class="user-image-container size-8 size-12">
+                    {% if user.image %}
+                    <img alt="{{ user.name | default: 'User Avatar' }}" height="80" src="{{ user.image }}" width="80" class="user-image" />
                     {% endif %}
-                  </div>
-              </div>
-          </a>
-      </div>
-      <div class="image-container image-container-md">
-          <img alt="{{ post.title | default: 'Post image' }}" width="1200" height="630" class="image" src="{{ post.image | default: '/placeholder.png' }}" />
-      </div>
-  
-      {% if post.content %}
-      <div class="post-content">{{ post.content | safe }}</div>
-      {% endif %}
-  
-      {% if adjacentPosts.size > 0 %}
-      <div class="continue-reading continue-reading-md">
-          <div class="continue-reading-border" aria-hidden="true">
-              <div class="w-full border-t border-stone-300 dark:border-stone-700"></div>
-          </div>
-          <div class="relative flex justify-center">
-              <span class="continue-reading-text continue-reading-text-dark">
-                {{ locales.post.continueReading }}
-              </span>
-          </div>
-      </div>
-      <div class="posts-grid posts-grid-md posts-grid-lg">
-          {% for post in adjacentPosts %}
-          <div>
-              <h2>{{ post.title }}</h2>
-              <p>{{ post.excerpt }}</p>
-              <a href="{{ post.url }}">Read more</a>
-          </div>
-          {% endfor %}
-      </div>
-      {% endif %}
-  </main>
-  
-  <footer />
-  
+                </div>
+                <div class="user-info user-info-md">
+                  {% if currentLocale == "ja" %}
+                    <span class="user-info-name">{{ post.writtenBy.name }}</span>{{ locales.post.by }}
+                  {% else %}
+                    {{ locales.post.by }} <span class="user-info-name">{{ post.writtenBy.name }}</span>
+                  {% endif %}
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="image-container image-container-md">
+        <img alt="{{ post.title | default: 'Post image' }}" width="1200" height="630" class="image" src="{{ post.image | default: '/placeholder.png' }}" />
+    </div>
+
+    {% if post.content %}
+    <div class="post-content">{{ post.content | safe }}</div>
+    {% endif %}
+
+    {% if adjacentPosts.size > 0 %}
+    <div class="continue-reading continue-reading-md">
+        <div class="continue-reading-border" aria-hidden="true">
+            <div class="w-full border-t border-stone-300 dark:border-stone-700"></div>
+        </div>
+        <div class="relative flex justify-center">
+            <span class="continue-reading-text continue-reading-text-dark">
+              {{ locales.post.continueReading }}
+            </span>
+        </div>
+    </div>
+    <div class="posts-grid posts-grid-md posts-grid-lg">
+        {% for post in adjacentPosts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.excerpt }}</p>
+            <a href="{{ post.url }}">Read more</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</main>
+
+<footer />
