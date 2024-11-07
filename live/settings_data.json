@@ -10,7 +10,7 @@
     "logoWidthDesktop": 50,
     "logoWidthMobile": 30,
     "headerTextColor": "#222222",
-    "showHeaderBackground": true,
+    "showHeaderBackground": false,
     "headerBackgroundColor": "#f2f2f2",
     "navText_1": "Get started",
     "navText_2": "Guides",
@@ -18,7 +18,12 @@
     "headerLinkText": "Support",
     "showHero": true,
     "heroTextColor": "#222222",
-    "heroBackground": "#ffffff",
+    "heroBackground": {
+      "src": "https://x7isgvhcmiq8g3xf.public.blob.vercel-storage.com/site-cm374hrmt00042ti81jlwtnw5/themes/default/live/assets/VPD7zaCRDW1Xv6T_J-nVR-pexels-enisahalidi-24864584.jpg",
+      "width": "640",
+      "height": "800",
+      "alt": ""
+    },
     "heroHeight": 450,
     "heroAlignment": "justify-center items-center text-center",
     "heroDivider": "none",
@@ -81,6 +86,7 @@
     "externalLinksHeading_4": "Help center",
     "externalLinksDescription_4": "Browse our help center for articles, FAQs, and guides to troubleshoot common issues.",
     "footerText_1": "Terms",
-    "footerText_2": "Privacy"
+    "footerText_2": "Privacy",
+    "overlayHeroSection": true
   }
 }

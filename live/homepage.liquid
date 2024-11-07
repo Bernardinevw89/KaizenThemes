@@ -4,6 +4,7 @@
   if settings.borders == "curved"
     assign border_radius = 8
     assign border_radius_icon = 9999
+    assign border_radius_button = 16
   endif
 -%}
 
@@ -17,6 +18,7 @@
     --body-font-size: {{ settings.bodyFontSize }}px;
     --border-radius: {{ border_radius }}px;
     --border-radius-icon: {{ border_radius_icon }}px;
+    --border-radius-button: {{ border_radius_button }}px;
 
     /* Headings typography */
     {% assign min_heading_size = 16 %}
