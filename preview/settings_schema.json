@@ -119,6 +119,12 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "overlayHeroSection",
+        "label": "Overlay hero section",
+        "default": false
+      },
+      {
         "id": "headerBackgroundColor",
         "label": "Background color",
         "type": "color",
@@ -226,7 +232,7 @@
       },
       {
         "type": "background",
-        "id": "heroBackground",
+        "id":"heroBackground",
         "label": "Background",
         "default": "#ffffff"
       },
@@ -479,7 +485,7 @@
             "label": "Globe"
           }
         ]
-      },
+      },      
       {
         "type": "image_picker",
         "id": "calloutImage",
